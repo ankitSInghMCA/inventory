@@ -373,6 +373,9 @@ body {
   border-bottom: 1px solid var(--line);
   box-shadow: 0 2px 16px rgba(30, 62, 99, .04);
   backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 70;
 }
 .topbar-brand .brand-mark { background: var(--blue-soft); border-color: #cfe2fa; color: var(--blue); }
 .topbar-brand .brand-name { color: var(--green); font-size: 19px; }
