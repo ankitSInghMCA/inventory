@@ -1,11 +1,14 @@
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+  faBars,
   faChartColumn,
   faCircleQuestion,
   faFileLines,
   faGear,
   faHospital,
   faHouse,
+  faXmark,
   faUsers,
   faUtensils,
   faWarehouse,
@@ -25,8 +28,17 @@ const iconMap = {
 }
 
 export default function Sidebar() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <aside className="sidebar">
+    <>
+      <button type="button" className="sidebar-mobile-toggle" onClick={() => setOpen(true)} aria-label="Open navigation">
+        <FontAwesomeIcon icon={faBars} />
+      </button>
+      <aside className={`sidebar${open ? ' is-open' : ''}`}>
+        <button type="button" className="sidebar-close" onClick={() => setOpen(false)} aria-label="Close navigation">
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
       <div className="brand">
         <span className="brand-mark"><FontAwesomeIcon icon={faHouse} /></span>
         <span>eSushrut</span>
@@ -44,6 +56,8 @@ export default function Sidebar() {
           <span className="nav-label">Help</span>
         </li> */}
       </ul>
-    </aside>
+      </aside>
+      {open && <button type="button" className="sidebar-backdrop" onClick={() => setOpen(false)} aria-label="Close navigation" />}
+    </>
   )
 }

@@ -7,6 +7,11 @@ svg { pointer-events: none; }
 .app { min-height: 100vh; }
 
 .sidebar { width: 210px; background: linear-gradient(180deg,#123e68,#0b3155); color: #fff; padding: 18px 0; position: fixed; inset: 0 auto 0 0; }
+.sidebar-layout .main { margin-left: 210px; width: calc(100% - 210px); }
+.sidebar-layout .topbar-nav, .sidebar-layout .mobile-nav-toggle { display: none; }
+.sidebar-layout .topbar-brand { display: none; }
+.sidebar-layout .user-menu { margin-left: auto; }
+.sidebar-mobile-toggle, .sidebar-close, .sidebar-backdrop { display: none; }
 .brand { padding: 4px 22px 25px; font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .brand-mark { display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center; border-radius: 8px; background: rgba(255,255,255,.12); }
 .brand small { display: block; font-size: 9px; font-weight: 400; opacity: .85; margin-top: 3px; width: 100%; }
@@ -299,6 +304,18 @@ select, input, textarea { width: 100%; padding: 11px 12px; border: 1px solid #cb
   .date-range-filter .custom-date-range {
     min-width: 0;
   }
+
+  .sidebar-layout .main { margin-left: 0; width: 100%; }
+  .sidebar-layout .sidebar { width: min(290px, 84vw); left: auto; right: 0; transform: translateX(100%); z-index: 90; padding: 20px 0; box-shadow: -14px 0 30px rgba(10,30,55,.2); transition: transform .22s ease; }
+  .sidebar-layout .sidebar.is-open { transform: translateX(0); }
+  .sidebar-layout .sidebar .brand { padding: 4px 22px 25px; justify-content: flex-start; font-size: 22px; }
+  .sidebar-layout .sidebar .brand small { display: block; }
+  .sidebar-layout .sidebar .nav li { justify-content: flex-start; padding: 14px 22px; }
+  .sidebar-layout .sidebar .nav-label { display: inline; }
+  .sidebar-layout .sidebar-close { display: grid; place-items: center; position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border: 0; border-radius: 50%; background: rgba(255,255,255,.14); color: #fff; cursor: pointer; font-size: 15px; }
+  .sidebar-layout .sidebar-mobile-toggle { display: grid; place-items: center; position: fixed; top: 16px; right: 16px; z-index: 70; width: 38px; height: 38px; border: 1px solid #cbd9e7; border-radius: 7px; background: #fff; color: #16345b; cursor: pointer; font-size: 17px; }
+  .sidebar-layout .sidebar-backdrop { display: block; position: fixed; inset: 0; z-index: 80; width: 100%; height: 100%; border: 0; background: rgba(15,35,60,.42); cursor: default; }
+  .sidebar-layout .topbar { padding-right: 68px; }
 }
 
 @media (max-width: 600px) {
@@ -317,7 +334,7 @@ select, input, textarea { width: 100%; padding: 11px 12px; border: 1px solid #cb
 }
 
 @media print {
-  .sidebar, .topbar, .heading .btn, .breadcrumb { display: none !important; }
+  .sidebar, .topbar, .sidebar-mobile-toggle, .mobile-nav-toggle, .heading .btn, .breadcrumb { display: none !important; }
   .main { margin-left: 0; width: 100%; }
 
   /* When printing the invoice from inside the New Indent modal,
@@ -325,6 +342,8 @@ select, input, textarea { width: 100%; padding: 11px 12px; border: 1px solid #cb
   body.printing-invoice .desk-content,
   body.printing-invoice .sidebar,
   body.printing-invoice .topbar,
+  body.printing-invoice .sidebar-mobile-toggle,
+  body.printing-invoice .mobile-nav-toggle,
   body.printing-invoice .breadcrumb,
   body.printing-invoice .modal-header,
   body.printing-invoice .modal-actions-noprint {
