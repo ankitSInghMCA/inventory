@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,7 +14,7 @@ export default function Modal({ open, onClose, title, children, wide }) {
 
   if (!open) return null
 
-  return (
+  return createPortal(
     <div className="modal-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose?.() }}>
       <div className={`modal-panel ${wide ? 'modal-wide' : ''}`}>
         <div className="modal-header">
@@ -24,6 +25,7 @@ export default function Modal({ open, onClose, title, children, wide }) {
         </div>
         <div className="modal-body">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

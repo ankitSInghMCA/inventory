@@ -8,6 +8,10 @@ import {
 	faDownload,
 	faEye,
 	faFileInvoice,
+	faLayerGroup,
+	faCircleCheck,
+	faClock,
+	faCircleXmark,
 	faPlus,
 } from '@fortawesome/free-solid-svg-icons'
 import Layout from '../components/Layout'
@@ -172,10 +176,26 @@ export default function Sidebarindent({ sidebar = true }) {
 					</div>
 				</div>
 				<div className="stats">
-					<div className="stat">Total Indents<b>{stats.total}</b></div>
-					<div className="stat green">Final Approved<b>{stats.finalApproved}</b></div>
-					<div className="stat yellow">Pending<b>{stats.pending}</b></div>
-					<div className="stat red">Rejected<b>{stats.rejected}</b></div>
+					<div className="stat stat-total">
+						<div className="stat-top"><span>Total Indents</span><span className="stat-icon"><FontAwesomeIcon icon={faLayerGroup} /></span></div>
+						<b>{stats.total}</b>
+						{/* <div className="stat-rail"><span style={{ width: '100%' }} /></div> */}
+					</div>
+					<div className="stat green">
+						<div className="stat-top"><span>Final Approved</span><span className="stat-icon"><FontAwesomeIcon icon={faCircleCheck} /></span></div>
+						<b>{stats.finalApproved}</b>
+						{/* <div className="stat-rail"><span style={{ width: `${stats.total ? (stats.finalApproved / stats.total) * 100 : 0}%` }} /></div> */}
+					</div>
+					<div className="stat yellow">
+						<div className="stat-top"><span>Pending</span><span className="stat-icon"><FontAwesomeIcon icon={faClock} /></span></div>
+						<b>{stats.pending}</b>
+						{/* <div className="stat-rail"><span style={{ width: `${stats.total ? (stats.pending / stats.total) * 100 : 0}%` }} /></div> */}
+					</div>
+					<div className="stat red">
+						<div className="stat-top"><span>Rejected</span><span className="stat-icon"><FontAwesomeIcon icon={faCircleXmark} /></span></div>
+						<b>{stats.rejected}</b>
+						{/* <div className="stat-rail"><span style={{ width: `${stats.total ? (stats.rejected / stats.total) * 100 : 0}%` }} /></div> */}
+					</div>
 				</div>
 				<div className="card indent-list-card">
 					<div className="section-title">Indent List</div>
